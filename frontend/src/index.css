@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 71% 4%; /* #020617 (slate-950) */
+    --foreground: 210 20% 98%; /* slate-50 */
+
+    --card: 224 71% 6%; /* slate-900 with dark tint */
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 263.4 70% 50.4%; /* violet-600 */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 27.9% 16.9%; /* slate-800 */
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 263.4 70% 50.4%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+
+    --radius: 0.75rem;
+  }
+
+  .light {
+    --background: 0 0% 100%; /* White */
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 262.1 83.3% 57.8%; /* violet-500 */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 220.9 39.3% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  @apply bg-slate-900/50 backdrop-blur-md border border-slate-800/80;
+}
+
+.glass-panel-light {
+  @apply bg-white/70 backdrop-blur-md border border-slate-200/50;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.4);
+}
+
+/* Streaming cursor animation */
+.streaming-cursor::after {
+  content: "▋";
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.8s infinite;
+  @apply text-violet-500;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Shimmer load skeleton */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.4) 25%,
+    rgba(51, 65, 85, 0.5) 37%,
+    rgba(30, 41, 59, 0.4) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer-animation 1.4s ease infinite;
+}
+
+.shimmer-light {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 0.8) 25%,
+    rgba(226, 232, 240, 0.9) 37%,
+    rgba(241, 245, 249, 0.8) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer-animation 1.4s ease infinite;
+}
+
+@keyframes shimmer-animation {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,0 +1,38 @@
+# Python environment
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv
+venv/
+ENV/
+env/
+*.db
+*.sqlite
+*.sqlite3
+
+# Node / Frontend builds
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+backend/static/
+
+# System / IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
+
+# RAG & Application storage directories
+backend/app/data/
+backend/data/
+chroma_db/
+*rag_steps.jsonl
+*llm_calls.jsonl
