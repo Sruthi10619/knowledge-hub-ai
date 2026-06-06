@@ -500,14 +500,13 @@ export default function FolderView() {
                     : msg
                 ));
               } else if (eventType === "done") {
-                // Streaming complete. Fetch canonical messages from server (real IDs)
-                // to replace the optimistic local state (which has fake STREAMING_ASSISTANT_ID).
-                // This is the ONE authoritative fetch — the activeConversation effect is
-                // suppressed by streamingConvIdRef so it won't fire a second fetch.
                 const convIdToFetch = conv!.id;
-                streamingConvIdRef.current = null;
                 isGeneratingRef.current = false;
                 setIsGenerating(false);
+                // Wait 800ms before fetching — gives HF Spaces nginx time to flush
+                // the final DB write before we read back from the server.
+                await new Promise(resolve => setTimeout(resolve, 800));
+                streamingConvIdRef.current = null;
                 await fetchMessages(convIdToFetch);
               }
             }

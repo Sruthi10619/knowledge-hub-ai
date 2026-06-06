@@ -214,6 +214,7 @@ class ChatService:
         start_time = time.perf_counter()
         
         try:
+            yield ": keepalive\n\n"
             async for chunk in RAGPipeline.query_stream(
                 folder_id=folder.id,
                 folder_name=folder.name,

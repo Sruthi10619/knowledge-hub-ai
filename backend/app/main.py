@@ -48,7 +48,14 @@ app = FastAPI(
 
 # Setup middleware (CORS, logging, rate limiting)
 setup_middleware(app)
-
+# Fix for Hugging Face Spaces nginx buffering breaking SSE/streaming
+@app.middleware("http")
+async def add_streaming_headers(request: Request, call_next):
+    response = await call_next(request)
+    if "text/event-stream" in response.headers.get("content-type", ""):
+        response.headers["X-Accel-Buffering"] = "no"
+        response.headers["Cache-Control"] = "no-cache"
+    return response
 # Include core API routes
 app.include_router(api_router)
 
