@@ -68,11 +68,11 @@ class Settings(BaseSettings):
     # ── Security ─────────────────────────────────────────────────────────
     SECRET_KEY: str = "change-me-in-production-use-openssl-rand-hex-32"
     JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     # ── CORS ─────────────────────────────────────────────────────────────
-    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://localhost:7860"]
+    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://localhost:7860", "https://sruthi10619-knowledge-hub-ai.hf.space"]
 
     # ── LLM Providers ────────────────────────────────────────────────────
     DEFAULT_LLM_PROVIDER: str = "groq"
